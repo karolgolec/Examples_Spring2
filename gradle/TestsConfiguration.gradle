@@ -1,0 +1,33 @@
+/****************************************************************************
+ ***************************** IMPLEMENTATION *******************************
+ 1. Apply this file to `build.gradle` by:
+ apply from: 'gradle/TestsConfiguration.gradle'
+
+ 2. Configuration tests in below defined 'testsConfig'
+
+ 3. Update Gradle by task 'wrapper'
+ ****************************************************************************/
+
+// Configuration
+def testsConfig = [
+        gradleVersion : "4.10.1",
+        testsEnabled: true
+]
+
+// Business
+task wrapper(type: Wrapper) {
+    gradleVersion = testsConfig.gradleVersion
+}
+
+test {
+    useJUnitPlatform()
+}
+
+tasks.withType(Test) {
+    doFirst {
+        if (VersionNumber.parse( gradle.gradleVersion ) < VersionNumber.parse(testsConfig.gradleVersion)){
+            throw IllegalArgumentException.newInstance('Use at least '+testsConfig.gradleVersion+ ' version of gradle.')
+        }
+    }
+    enabled = testsConfig.testsEnabled
+}

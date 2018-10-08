@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+</head>
+<body>
+<h3>Get the generated report</h3>
+<div th:if="${report.generated}">
+    <h4>Generated report:</h4>
+    <a th:href="${report_link}" href="#">
+        [(${report_link})]
+    </a>
+</div>
+<div th:unless="${report.generated}">
+    Generating the report, please wait.
+</div>
+</body>
+</html>

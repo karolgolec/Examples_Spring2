@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h3>Generate report</h3>
+<form action="#" th:action="@{/reports}" th:object="${report}" method="post">
+    <table>
+        <tr>
+            <td><label>First name</label></td>
+            <td><input type="text" th:field="*{recipient.firstName}" /></td>
+        </tr>
+        <tr>
+            <td><label>Last name</label></td>
+            <td><input type="text" th:field="*{recipient.lastName}" /></td>
+        </tr>
+        <tr>
+            <td><label>Year</label></td>
+            <td><input type="number" min="1900" max="2099" step="1" th:field="*{year}" /></td>
+        </tr>
+        <tr>
+            <td><input type="submit" value="Submit" /></td>
+        </tr>
+    </table>
+</form>
+</body>
+</html>
